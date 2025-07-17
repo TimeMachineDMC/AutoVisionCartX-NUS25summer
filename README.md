@@ -30,8 +30,8 @@ We developed an intelligent ordering and delivery system integrating deep learni
 建议使用 Python 3.12，推荐虚拟环境：
 
 ```bash
-git clone https://github.com/yourname/yourrepo.git
-cd yourrepo
+git clone https://github.com/TimeMachineDMC/AutoVisionCartX-NUS25summer
+cd AutoVisionCartX-NUS25summer
 python -m venv venv
 source venv/bin/activate   # Windows 用 venv\Scripts\activate
 pip install -r requirements.txt
