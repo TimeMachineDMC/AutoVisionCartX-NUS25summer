@@ -4,11 +4,18 @@
 
 ---
 
+## 作者
+
+Deep Learning Expert Huang Zitong
+Deep Learning Expert Wang Chenghao
+Robotics Expert Liu Dingfu
+Robotics Expert Zhou Nanxu
+
 ## 项目简介 | Project Introduction
 
-本项目实现了一个基于深度学习的智能小车，可识别多种目标（如香蕉、书、elderly、young）并进行自动驾驶。系统集成了目标检测（YOLOv8）、摄像头流、Web 控制、批量数据标注与自动修正等功能，可实时运行于树莓派/PC。
+我们开发了一个集成了深度学习和机器人技术的智能订购和交付系统。基于 Flask 的网络界面结合语音识别功能，将客户和供应商连接起来。3D 打印产品通过 yolo 进行识别，由机械臂抓取，并通过自动驾驶汽车进行交付。一般来说，深度学习为物体识别提供动力，而机器人则负责自动取送操作。
 
-This project demonstrates a deep-learning-powered delivery robot that can recognize multiple objects (banana, book, elderly, young, etc.) and drive autonomously. The system integrates object detection (YOLOv8), camera streaming, web control, batch labeling & data fixing tools, and can run in real time on Raspberry Pi or PC.
+We developed an intelligent ordering and delivery system integrating deep learning and robotics. A Flask-based web interface combined voice recognition  connects customers and vendors. 3D-printed products are recognized using yolo, grasped by a robotic arm, and delivered via autonomous vehicles. In general, deep learning powers object recognition, while robotics handles automated pick-and-deliver operations.
 
 ---
 
