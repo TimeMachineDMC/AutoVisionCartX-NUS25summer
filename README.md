@@ -7,9 +7,13 @@
 ## 作者
 
 Deep Learning Expert Huang Zitong
+
 Deep Learning Expert Wang Chenghao
+
 Robotics Expert Liu Dingfu
+
 Robotics Expert Zhou Nanxu
+
 
 ## 项目简介 | Project Introduction
 
@@ -52,24 +56,31 @@ python main_controller.py
 
 所有数据采用 YOLO 标注格式，标签修正和批量修改均有脚本辅助完成。
 
+This project supports objects including banana, book, elderly and young people.
+
+All data are in YOLO annotation format, and label correction and batch modification are done with the help of scripts.
+
 ## 项目亮点 | Features
-🚗 实时多目标识别与跟踪
+🚗 实时多目标识别与跟踪 | Real-time multi-target recognition and tracking
 
-🌐 Web 控制 & 视频流展示
+🌐 Web 控制 & 视频流展示 | Web Control & Video Streaming
 
-🔄 支持批量修正 YOLO 标签格式
+🤖 自动化脚本 | Automation Script
 
-🤖 支持自定义类别扩展
-
-⚡ 高效，适配树莓派/PC
+⚡ 高效，适配树莓派/PC | Highly efficient, adaptable to Raspberry Pi/PC
 
 ## 致谢 | Acknowledgement
 感谢 Ultralytics YOLOv8 社区与开源生态。
 
+Thanks to the Ultralytics YOLOv8 community and open source ecosystem.
+
 ## License
 MIT
 
+--- 
+
 如有任何问题欢迎提 issue / 联系作者！
+
 Feel free to open an issue or contact for any question.
 
 
