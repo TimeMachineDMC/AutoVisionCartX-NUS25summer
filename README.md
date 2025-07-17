@@ -6,14 +6,13 @@
 
 ## 作者
 
-Deep Learning Expert Huang Zitong @TimeMachineDMC
+Deep Learning Expert Huang Zitong [@TimeMachineDMC](https://github.com/TimeMachineDMC)
 
-Deep Learning Expert Wang Chenghao @voldbaboon
+Deep Learning Expert Wang Chenghao [@voldbaboon](https://github.com/voldbaboon)
 
-Robotics Expert Liu Dingfu @Severus-Snap
+Robotics Expert Liu Dingfu [@Severus-Snap](https://github.com/Severus-Snap)
 
-Robotics Expert Zhou Nanxu @Provence-24
-
+Robotics Expert Zhou Nanxu [@Provence-24](https://github.com/Provence-24)
 
 ## 项目简介 | Project Introduction
 
