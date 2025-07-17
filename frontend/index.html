@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMarket - Premium E-commerce Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 背景动画 -->
+    <div class="bg-animation">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="navbar animate__animated animate__fadeInDown">
+            <div class="nav-brand">
+                <i class="fas fa-shopping-bag"></i>
+                <span>MyMarket</span>
+            </div>
+            <div class="nav-actions" id="navActions">
+                <button class="btn btn-outline" onclick="showLoginModal()">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="btn btn-primary" onclick="showRegisterModal()">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+            </div>
+            <div class="user-info hidden" id="userInfo">
+                <span class="user-welcome">Welcome, <span id="userName"></span></span>
+                <button class="btn btn-outline" onclick="showSettingsModal()">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+                <button class="btn btn-outline" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </nav>
+
+        <!-- 欢迎区域 -->
+        <section class="hero animate__animated animate__fadeInUp" id="heroSection">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">MyMarket</span>
+                    <br>Subscription Platform
+                </h1>
+                <p class="hero-subtitle">
+                    Connecting quality vendors with smart buyers, experience the new product subscription service
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-large" onclick="showRegisterModal()">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </button>
+                    <button class="btn btn-outline btn-large" onclick="showProducts()">
+                        <i class="fas fa-eye"></i> Browse Products
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 客户视图 -->
+        <section class="main-content hidden animate__animated animate__fadeInUp" id="customerView">
+            <div class="content-header">
+                <h2><i class="fas fa-user"></i> Customer Center</h2>
+                <div class="header-controls">
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <button class="btn btn-voice" id="voiceOrderBtn" onclick="toggleVoiceOrder()">
+                        <i class="fas fa-microphone"></i> Voice Order
+                    </button>
+                </div>
+            </div>
+
+            <!-- Voice Recognition Result -->
+            <div class="voice-result" id="voiceResult">
+                <div class="voice-result-text" id="voiceResultText"></div>
+                <div class="voice-result-order" id="voiceResultOrder"></div>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Product cards will be generated here dynamically -->
+            </div>
+
+            <!-- Shopping Cart -->
+            <div class="cart-section">
+                <h3><i class="fas fa-shopping-cart"></i> Shopping Cart</h3>
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be displayed here -->
+                </div>
+                <div class="cart-actions">
+                    <button class="btn btn-primary" id="submitOrderBtn" onclick="submitOrder()" style="display: none;">
+                        <i class="fas fa-paper-plane"></i> Submit Order
+                    </button>
+                    <button class="btn btn-outline" onclick="clearCart()">
+                        <i class="fas fa-trash"></i> Clear Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- My Subscriptions -->
+            <div class="subscriptions-section">
+                <h3><i class="fas fa-heart"></i> My Order History</h3>
+                <div class="subscriptions-list" id="subscriptionsList">
+                    <!-- Order history will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 商家视图 -->
+        <section class="main-content hidden animate__animated animate__fadeInUp" id="sellerView">
+            <div class="content-header">
+                <h2><i class="fas fa-store"></i> Vendor Center</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="showAddProductModal()">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                    <button class="btn btn-outline" onclick="refreshSubscriptionData()">
+                        <i class="fas fa-sync-alt"></i> Refresh Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Management -->
+            <div class="products-management">
+                <h3><i class="fas fa-boxes"></i> My Products</h3>
+                <div class="seller-products" id="sellerProducts">
+                    <!-- Vendor products will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Order Management -->
+            <div class="order-management">
+                <h3><i class="fas fa-shopping-cart"></i> Order Management</h3>
+                <div class="order-actions">
+                    <button class="btn btn-success" onclick="sendPendingOrdersToRobot()">
+                        <i class="fas fa-robot"></i> Send Orders to Robot
+                    </button>
+                    <button class="btn btn-outline" onclick="refreshOrderData()">
+                        <i class="fas fa-sync-alt"></i> Refresh Orders
+                    </button>
+                    <button class="btn btn-danger" onclick="clearAllOrders()">
+                        <i class="fas fa-trash"></i> Clear All Orders
+                    </button>
+                </div>
+                <div class="pending-orders" id="pendingOrders">
+                    <!-- Pending orders will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Subscription Analytics -->
+            <div class="subscriptions-analytics">
+                <h3><i class="fas fa-chart-line"></i> Subscription Analytics</h3>
+                <div class="analytics-cards">
+                    <div class="analytics-card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-number" id="totalSubscribers">0</div>
+                            <div class="card-label">Total Subscriptions</div>
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="card-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-number" id="popularProduct">-</div>
+                            <div class="card-label">Popular Product</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detailed-subscriptions">
+                    <h4>Detailed Subscription Information</h4>
+                    <div class="subscriptions-table" id="detailedSubscriptions">
+                        <!-- Detailed subscription information will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay hidden" id="loginModal">
+        <div class="modal animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
+                <button class="modal-close" onclick="hideLoginModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm" onsubmit="login(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="loginUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay hidden" id="registerModal">
+        <div class="modal animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-plus"></i> Register</h3>
+                <button class="modal-close" onclick="hideRegisterModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm" onsubmit="register(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="registerUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> User Type</label>
+                        <select id="registerUserType" required>
+                            <option value="">Select Type</option>
+                            <option value="Customer">Customer</option>
+                            <option value="Seller">Vendor</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-user-plus"></i> Register
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal-overlay hidden" id="addProductModal">
+        <div class="modal animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> Add Product</h3>
+                <button class="modal-close" onclick="hideAddProductModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm" onsubmit="addProduct(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-tag"></i> Product Name</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-align-left"></i> Product Description</label>
+                        <textarea id="productDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-list"></i> Product Category</label>
+                        <select id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Food">Food</option>
+                            <option value="Fruit">Fruit</option>
+                            <option value="Stationery">Stationery</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-dollar-sign"></i> Price</label>
+                        <input type="number" id="productPrice" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-boxes"></i> Stock</label>
+                        <input type="number" id="productStock" min="0" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay hidden" id="settingsModal">
+        <div class="modal animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <h3><i class="fas fa-cog"></i> System Settings</h3>
+                <button class="modal-close" onclick="hideSettingsModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h4><i class="fas fa-server"></i> Connection Mode</h4>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="radio" name="connectionMode" value="local" checked onchange="changeConnectionMode()">
+                            <span class="setting-text">
+                                <strong>Local Mock Mode</strong>
+                                <small>Use built-in demo data, no server required</small>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="radio" name="connectionMode" value="server" onchange="changeConnectionMode()">
+                            <span class="setting-text">
+                                <strong>Server Connection Mode</strong>
+                                <small>Connect to C++ backend server (localhost:5555)</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h4><i class="fas fa-palette"></i> Interface Settings</h4>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="enableAnimations" checked onchange="toggleAnimations()">
+                            <span class="setting-text">
+                                <strong>Enable Animations</strong>
+                                <small>Turn on/off page animations and transition effects</small>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="enableNotifications" checked onchange="toggleNotifications()">
+                            <span class="setting-text">
+                                <strong>Show Operation Notifications</strong>
+                                <small>Turn on/off success or failure notifications</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4><i class="fas fa-database"></i> Demo Accounts</h4>
+                    <div class="demo-accounts">
+                        <div class="account-card">
+                            <h5><i class="fas fa-user"></i> Customer Accounts</h5>
+                            <p><strong>Username:</strong> elderly or young</p>
+                            <p><strong>Password:</strong> 123 (or any password)</p>
+                        </div>
+                        <div class="account-card">
+                            <h5><i class="fas fa-store"></i> Vendor Accounts</h5>
+                            <p><strong>Username:</strong> single_vendor</p>
+                            <p><strong>Password:</strong> 123 (or any password)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4><i class="fas fa-info-circle"></i> System Status</h4>
+                    <div class="status-info">
+                        <div class="status-item">
+                            <span class="status-label">Connection Status:</span>
+                            <span class="status-value" id="connectionStatus">Local Mode</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Product Count:</span>
+                            <span class="status-value" id="productCount">2</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Current User:</span>
+                            <span class="status-value" id="currentUserStatus">Not logged in</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-actions">
+                    <button class="btn btn-outline" onclick="clearOrderHistory()">
+                        <i class="fas fa-history"></i> Clear Order History
+                    </button>
+                    <button class="btn btn-outline" onclick="clearLocalData()">
+                        <i class="fas fa-trash"></i> Clear All Data
+                    </button>
+                    <button class="btn btn-primary" onclick="hideSettingsModal()">
+                        <i class="fas fa-check"></i> Save Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification hidden" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText"></span>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading hidden" id="loading">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
