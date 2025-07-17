@@ -1,0 +1,6 @@
+train: D:/NOI/Python/DeepLearning/vision_servo_demo/dataset/images/train
+val: D:/NOI/Python/DeepLearning/vision_servo_demo/dataset/images/val
+
+nc: 4
+names: ['banana', 'book', 'elderly', 'young']
+
