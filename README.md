@@ -1,18 +1,18 @@
 # 🚗 智能配送小车 · AutoVisionCart X
-> 基于 YOLOv8 的多目标识别与自动驾驶演示项目  
-> Smart Delivery Robot: YOLOv8-based Multi-Object Detection & Autonomous Driving
+> 基于 YOLOv8 和 Whisper 的多目标识别与自动驾驶演示项目  
+> Smart Delivery Robot: YOLOv8&Whisper-based Multi-Object Detection & Autonomous Driving
 
 ---
 
 ## 作者
 
-Deep Learning Expert Huang Zitong
+Deep Learning Expert Huang Zitong @TimeMachineDMC
 
-Deep Learning Expert Wang Chenghao
+Deep Learning Expert Wang Chenghao @voldbaboon
 
-Robotics Expert Liu Dingfu
+Robotics Expert Liu Dingfu @Severus-Snap
 
-Robotics Expert Zhou Nanxu
+Robotics Expert Zhou Nanxu @Provence-24
 
 
 ## 项目简介 | Project Introduction
