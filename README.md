@@ -17,7 +17,7 @@ Robotics Expert Zhou Nanxu @Provence-24
 
 ## 项目简介 | Project Introduction
 
-我们开发了一个集成了深度学习和机器人技术的智能订购和交付系统。基于 Flask 的网络界面结合语音识别功能，将客户和供应商连接起来。3D 打印产品通过 yolo 进行识别，由机械臂抓取，并通过自动驾驶汽车进行交付。一般来说，深度学习为物体识别提供动力，而机器人则负责自动取送操作。
+我们开发了一个集成深度学习和机器人技术的智能订购和交付系统。基于 Flask 的网络界面结合语音识别功能，将客户和供应商连接起来。3D 打印产品通过 yolo 进行识别，由机械臂抓取，并通过自动驾驶汽车进行交付。一般来说，深度学习为物体识别提供动力，而机器人则负责自动取送操作。
 
 We developed an intelligent ordering and delivery system integrating deep learning and robotics. A Flask-based web interface combined voice recognition  connects customers and vendors. 3D-printed products are recognized using yolo, grasped by a robotic arm, and delivered via autonomous vehicles. In general, deep learning powers object recognition, while robotics handles automated pick-and-deliver operations.
 
